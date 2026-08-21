@@ -7,6 +7,7 @@ import cors from "cors";
 import { pool } from "./config/db.js";
 import { redis } from "./config/redis.js";
 import passport from "./config/passport.js";
+import "./workers/emailWorker.js";
 
 import emailRoutes from "./routes/emailRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
