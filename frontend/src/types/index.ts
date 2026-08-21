@@ -8,10 +8,10 @@ export type EmailFolder = "scheduled" | "sent";
 
 export interface EmailItem {
   id: string;
-  to: string;
+  recipient: string;
   subject: string;
   preview: string;
-  timeLabel: string;
+  scheduledAt: string;
   starred: boolean;
   folder: EmailFolder;
 }
