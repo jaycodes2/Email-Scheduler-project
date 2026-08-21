@@ -57,6 +57,8 @@ app.get("/health", (req, res) => {
 app.use("/auth", authRoutes);
 app.use("/emails", emailRoutes);
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = Number(process.env.PORT) || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
