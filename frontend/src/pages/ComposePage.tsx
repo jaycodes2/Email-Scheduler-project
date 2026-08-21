@@ -266,7 +266,7 @@ export default function ComposePage() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/emails",
+        `${import.meta.env.VITE_API_URL}/emails`,
         {
           method: "POST",
           body: formData,

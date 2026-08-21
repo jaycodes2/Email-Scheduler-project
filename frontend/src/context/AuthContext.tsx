@@ -34,7 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const fetchCurrentUser = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/auth/me",
+          `${import.meta.env.VITE_API_URL}/auth/me`,
           {
             credentials: "include",
           }
@@ -82,7 +82,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${import.meta.env.VITE_API_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

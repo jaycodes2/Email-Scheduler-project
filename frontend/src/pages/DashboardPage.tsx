@@ -57,13 +57,13 @@ export default function DashboardPage() {
         sentResponse,
       ] = await Promise.all([
         fetch(
-          `http://localhost:5000/emails?status=${activeFolder}`
+          `${import.meta.env.VITE_API_URL}/emails?status=${activeFolder}`
         ),
         fetch(
-          "http://localhost:5000/emails?status=scheduled"
+          `${import.meta.env.VITE_API_URL}/emails?status=scheduled`
         ),
         fetch(
-          "http://localhost:5000/emails?status=sent"
+          `${import.meta.env.VITE_API_URL}/emails?status=sent`
         ),
       ]);
 
@@ -118,7 +118,7 @@ export default function DashboardPage() {
   const toggleStar = async (id: string) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/emails/${id}/star`,
+        `${import.meta.env.VITE_API_URL}/emails/${id}/star`,
         {
           method: "PATCH",
         }
