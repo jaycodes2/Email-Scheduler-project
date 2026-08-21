@@ -15,10 +15,10 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/login",
+    failureRedirect: `${process.env.VITE_API_URL}/login`,
   }),
   (_req, res) => {
-    res.redirect("http://localhost:5173/dashboard");
+    res.redirect(`${process.env.VITE_API_URL}/dashboard`);
   }
 );
 
