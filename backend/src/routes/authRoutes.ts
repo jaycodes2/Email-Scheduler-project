@@ -15,10 +15,10 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: `${process.env.VITE_API_URL}/login`,
+    failureRedirect: `${process.env.VERCEL_URL}/login`,
   }),
   (_req, res) => {
-    res.redirect(`${process.env.VITE_API_URL}/dashboard`);
+    res.redirect(`${process.env.VERCEL_URL}/dashboard`);
   }
 );
 
