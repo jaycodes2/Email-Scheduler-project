@@ -11,7 +11,11 @@ import "./workers/emailWorker.js";
 
 import emailRoutes from "./routes/emailRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+
 const app = express();
+
+// Required when running behind Render's proxy
+app.set("trust proxy", 1);
 
 app.use(express.json());
 
@@ -27,6 +31,12 @@ app.use(
     secret: process.env.SESSION_SECRET!,
     resave: false,
     saveUninitialized: false,
+
+    cookie: {
+      secure: true,
+      sameSite: "none",
+      httpOnly: true,
+    },
   })
 );
 
@@ -51,7 +61,7 @@ redis
     console.error("Redis connection failed:", error);
   });
 
-app.get("/health", (req, res) => {
+app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
