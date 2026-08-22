@@ -120,19 +120,30 @@ export const createEmail = async (
         Date.now();
 
       const job = await emailQueue.add(
-        "send-email",
-        {
-          emailId: email.id,
-        },
-        {
-          delay: Math.max(jobDelay, 0),
-          attempts: 3,
-          backoff: {
-            type: "exponential",
-            delay: 1000,
-          },
-        }
-      );
+  "send-email",
+  {
+    emailId: email.id,
+  },
+  {
+    delay: Math.max(jobDelay, 0),
+    attempts: 3,
+    backoff: {
+      type: "exponential",
+      delay: 1000,
+    },
+  }
+);
+
+console.log(
+  "JOB ADDED:",
+  job.id,
+  "EMAIL:",
+  email.id,
+  "DELAY:",
+  Math.max(jobDelay, 0),
+  "SCHEDULED:",
+  email.scheduled_at
+);
 
       createdEmails.push({
         email,
