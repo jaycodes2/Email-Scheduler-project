@@ -2,12 +2,15 @@ import nodemailer from "nodemailer";
 
 export async function createMailer() {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
-  return transporter;
+await transporter.verify();
+console.log("Gmail SMTP connection successful");
 }
