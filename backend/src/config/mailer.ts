@@ -13,4 +13,5 @@ export async function createMailer() {
 
 await transporter.verify();
 console.log("Gmail SMTP connection successful");
+return transporter;
 }
