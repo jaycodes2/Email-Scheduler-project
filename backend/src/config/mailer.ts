@@ -1,15 +1,11 @@
 import nodemailer from "nodemailer";
 
 export async function createMailer() {
-  const testAccount = await nodemailer.createTestAccount();
-
   const transporter = nodemailer.createTransport({
-    host: testAccount.smtp.host,
-    port: testAccount.smtp.port,
-    secure: testAccount.smtp.secure,
+    service: "gmail",
     auth: {
-      user: testAccount.user,
-      pass: testAccount.pass,
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
