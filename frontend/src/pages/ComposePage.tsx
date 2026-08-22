@@ -309,28 +309,29 @@ export default function ComposePage() {
   };
 
   const handleDoneSchedule = async (
-    selection: string
-  ) => {
-    if (!selection) return;
+  selection: string
+) => {
+  if (!selection) return;
 
-    setScheduledFor(selection);
+  // Convert the datetime-local value to a real ISO UTC timestamp
+  const localDate = new Date(selection);
+  const scheduledTime = localDate.toISOString();
 
-    const date = new Date(selection);
+  setScheduledFor(selection);
 
-    setScheduledLabel(
-      date.toLocaleString("en-US", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-      })
-    );
+  setScheduledLabel(
+    localDate.toLocaleString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      minute: "2-digit",
+    })
+  );
 
-    setSendLaterOpen(false);
+  setSendLaterOpen(false);
 
-    await handleScheduleEmail(selection);
-  };
+  await handleScheduleEmail(scheduledTime);
+};
 
   return (
     <div className="min-h-screen w-full bg-white">
